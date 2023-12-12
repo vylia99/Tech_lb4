@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:head>
+        <title>Запрос3</title>
+    </h:head>
+    <h:body>
+        <p:breadCrumb>
+            <p:menuitem value="Додому" url="index.xhtml" />
+            <p:menuitem value="Запрос 1" url="zapros1.xhtml" />
+            <p:menuitem value="Запрос 2" url="zapros2.xhtml" />
+            <p:menuitem value="Запрос 3" url="zapros3.xhtml" />
+            <p:menuitem value="Запрос 4" url="zapros4.xhtml" />
+        </p:breadCrumb>
+        <h1>Запрос 3: вивести список клієнтів, тваринам яких надавалась обрана послуга</h1>
+        <h3>Запоніть дані:</h3>
+        <h:panelGrid columns="2">
+            <p:outputLabel value="Медична послуга"/>
+            <p:autoComplete dropdown="true" value=""
+                            completeMethod="#{petBean.completeMedText}" scrollHeight="250"/>
+        </h:panelGrid>
+        <p:commandButton value="Знайти"
+                         styleClass="ui-button-raised ui-button-info" icon="pi pi-search" />
+        <p:dataTable>
+
+        </p:dataTable>
+    </h:body>
+</f:view>
+</html>

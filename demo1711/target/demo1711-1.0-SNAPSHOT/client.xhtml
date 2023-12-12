@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" lang="ru" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://primefaces.org/ui ">
+<f:view>
+   <h:head>
+      <title>Клієнти</title>
+   </h:head>
+   <h:body>
+      <p:breadCrumb>
+      <p:menuitem value="Додому" url="index.xhtml" />
+      </p:breadCrumb>
+      <h1><h:outputText id="client" value="Клієнт: #{clientBean.selectedClient.name}"/></h1>
+      <h:form id="table2">
+         <p:dataTable value="#{clientBean.selectedClient.pets}" var="p" rowHover="true" stripedRows="true">
+
+            <p:column>
+               <f:facet name="header">№</f:facet>
+               <h:outputText value="#{p.id}"/>
+            </p:column>
+            <p:column>
+               <f:facet name="header">Ім'я</f:facet>
+               <h:outputText value="#{p.name}"/>
+            </p:column>
+            <p:column>
+               <f:facet name="header">Вид</f:facet>
+               <h:outputText value="#{p.kind}"/>
+            </p:column>
+            <p:column>
+               <f:facet name="header">Вік</f:facet>
+               <h:outputText value="#{p.age}"/>
+            </p:column>
+            <p:column>
+               <f:facet name="header">Візити</f:facet>
+               <p:commandButton value="Показати" action="#{petBean.showVisit(p.id)}"
+                                styleClass="ui-button-success flat-button" ajax="false"  />
+            </p:column>
+         </p:dataTable>
+<h3>Додати тварину:</h3>
+         <h:panelGrid columns="2">
+            <p:outputLabel value="Ім'я"/>
+            <p:inputText value="#{clientBean.petForAdd.name}"/>
+            <p:outputLabel value="Вид"/>
+            <p:autoComplete dropdown="true" value="#{clientBean.petForAdd.kind}"
+                            completeMethod="#{clientBean.completeText}" scrollHeight="250"/>
+            <p:outputLabel value="Вік"/>
+            <p:spinner value="#{clientBean.petForAdd.age}"/>
+         </h:panelGrid>
+
+         <p:commandButton value="Додати" action="#{clientBean.addPet()}" update=":table2 :client"
+                          styleClass="ui-button-secondary raised-button"/>
+      </h:form>
+   </h:body>
+</f:view>
+</html>

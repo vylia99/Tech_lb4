@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" lang="ru" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://primefaces.org/ui ">
+<f:view>
+   <h:head>
+      <title>Тварина</title>
+   </h:head>
+   <h:body>
+      <p:breadCrumb>
+         <p:menuitem value="Додому" url="index.xhtml" />
+      </p:breadCrumb>
+      <h1><h:outputText value="Тварина: #{petBean.currentPet.name}"/></h1>
+      <h2><h:outputText id="vlas" value="Власник: #{petBean.currentPet.client.name}"/></h2>
+      <h:form id="table3">
+      <p:dataTable value="#{petBean.currentPet.visits}" var="m">
+         <p:column>
+            <f:facet name="header">№</f:facet>
+            <h:outputText value="#{m.id}"/>
+         </p:column>
+         <p:column>
+         <f:facet name="header">Дата</f:facet>
+         <h:outputText value="#{myDateTimeFormatter.dateFormat(m.dateTime)}"/>
+         </p:column>
+         <p:column>
+            <f:facet name="header">Медична послуга</f:facet>
+            <h:outputText value="#{m.medicalService.name}"/>
+         </p:column>
+         <p:column>
+            <f:facet name="header">Ціна</f:facet>
+            <h:outputText value="#{m.medicalService.price}"/>
+         </p:column>
+      </p:dataTable>
+         <h3> <h:outputText value="Новий візит"/></h3>
+      <h:panelGrid columns="2">
+         <p:outputLabel value="Дата"/>
+         <p:calendar value="#{petBean.visitForAdd.dateTime}" showOn="button" pattern="yyyy-MM-dd" />
+         <p:outputLabel value="Медична послуга"/>
+         <p:autoComplete dropdown="true" value="#{petBean.medicalServiceStr}"
+                         completeMethod="#{petBean.completeMedText}" scrollHeight="250"/>
+      </h:panelGrid>
+      <p:commandButton value="Додати" action="#{petBean.addVisit()}" update=":table3"
+                       styleClass="ui-button-secondary raised-button"/>
+      </h:form>
+   </h:body>
+</f:view>
+</html>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" lang="ru" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://primefaces.org/ui ">
+<f:view>
+    <h:head>
+        <title>Запрос1</title>
+    </h:head>
+    <h:body>
+        <p:breadCrumb>
+            <p:menuitem value="Додому" url="index.xhtml" />
+            <p:menuitem value="Запрос 1" url="zapros1.xhtml" />
+            <p:menuitem value="Запрос 2" url="zapros2.xhtml" />
+            <p:menuitem value="Запрос 3" url="zapros3.xhtml" />
+            <p:menuitem value="Запрос 4" url="zapros4.xhtml" />
+        </p:breadCrumb>
+        <h1>Запрос 1: вивести список візитів за обрану дату</h1>
+        <h3>Запоніть дані:</h3>
+        <h:panelGrid columns="2">
+            <p:outputLabel value="Оберіть дату"/>
+            <p:calendar id="selectedDate" value="#{visitBean.selectedDate}"  showOn="button" pattern="yyyy-MM-dd"/>
+        </h:panelGrid>
+        <p:commandButton value="Знайти" action="#{visitBean.findVisitsByDate}" update="visitsTable"
+                         styleClass="ui-button-raised ui-button-info" icon="pi pi-search" />
+        <p:dataTable id="visitsTable" value="#{visitBean.visits}" var="visit">
+            <p:column>
+                <f:facet name="header">ID візиту</f:facet>
+                <h:outputText value="#{visit[0]}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">Дата</f:facet>
+                <h:outputText value="#{visit[1]}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">Ім'я клієнта</f:facet>
+                <h:outputText value="#{visit[2]}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">Ім'я тварини</f:facet>
+                <h:outputText value="#{visit[3]}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">Назва послуги</f:facet>
+                <h:outputText value="#{visit[4]}" />
+            </p:column>
+        </p:dataTable>
+    </h:body>
+</f:view>
+</html>

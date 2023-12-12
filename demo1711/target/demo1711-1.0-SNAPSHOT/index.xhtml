@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" lang="ru" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://primefaces.org/ui ">
+<f:view>
+    <h:head>
+        <title>Клієнти</title>
+    </h:head>
+    <h:body>
+        <h:form id="table">
+        <p:breadCrumb>
+            <p:menuitem value="Додому" url="index.xhtml" />
+                <p:menuitem value="Запрос 1" url="zapros1.xhtml" />
+                <p:menuitem value="Запрос 2" url="zapros2.xhtml" />
+                <p:menuitem value="Запрос 3" url="zapros3.xhtml" />
+                <p:menuitem value="Запрос 4" url="zapros4.xhtml" />
+        </p:breadCrumb>
+
+            <h1><h:outputText value="Список клієнтів:"/></h1>
+            <p:dataTable  value="#{clientBean.clientList}" var="k" rowHover="true" stripedRows="true">
+                <p:column headerText="#">
+                    <h:outputText value="#{k.id}"/>
+                </p:column>
+                <p:column headerText="Клієнти">
+                    <h:outputText value="#{k.name}"/>
+                </p:column>
+                 <p:column headerText="Тварини">
+                     <p:commandButton value="Показати" action="#{clientBean.showPets(k.id)}"
+                                      class="ui-button-info rounded-button" ajax="false" icon="pi pi-users"/>
+                 </p:column>
+                  <p:column >
+                      <p:commandButton value="Видалити" action="#{clientBean.delete(k.id)}"
+                                       class="ui-button-danger rounded-button" ajax="false" icon="pi pi-trash"/>
+                  </p:column>
+                <p:column >
+                    <p:commandButton value="Змінити" action="#{clientBean.edit(k.id)}"
+                                      class="ui-button-warning rounded-button" ajax="false" icon="pi pi-check"/>
+                </p:column>
+            </p:dataTable>
+
+            <h:panelGrid columns="2">
+                <p:outputLabel value="Ім'я"/>
+                <p:inputText value="#{clientBean.client.name}"/>
+            </h:panelGrid>
+            <p:commandButton value="Додати" action="#{clientBean.add()}" update=":table"
+                             styleClass="ui-button-secondary raised-button" />
+        </h:form>
+    </h:body>
+
+</f:view>
+</html>

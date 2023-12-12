@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+   <h:head>
+      <title>Змінити клієнта</title>
+   </h:head>
+   <h:body>
+      <p:breadCrumb>
+         <p:menuitem value="Додому" url="index.xhtml" />
+      </p:breadCrumb>
+   <h:form>
+      <h1><h:outputText value="Змінити ім'я клієнта:"/></h1>
+      <p:outputLabel for="name" value="Нове ім'я:"/>
+      <p:inputText id="name" value="#{clientBean.client.name}"/>
+      <p:commandButton value="Змінити" action="#{clientBean.update()}"
+                       styleClass="ui-button-secondary raised-button" ajax="false"/>
+   </h:form>
+   </h:body>
+</f:view>
+</html>
